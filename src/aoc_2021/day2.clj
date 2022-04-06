@@ -55,7 +55,7 @@
     (assoc submarine-state :depth 0)
     submarine-state))
 
-(defn move-forward [{:keys [aim]:as submarine-state} amount]
+(defn move-forward [{:keys [aim] :as submarine-state} amount]
   (prevent-negative-depth (-> submarine-state
                               (update :position + amount)
                               (update :depth + (* aim amount)))))
@@ -83,6 +83,7 @@
                        line-seq
                        (map parse-instruction)))
 
+(defn day-2-part-2 []
   (let [{:keys [position depth]} (reduce process-instruction
                                          initial-submarine-state
                                          instructions)]
